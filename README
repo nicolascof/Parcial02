@@ -31,11 +31,21 @@ RootNode : rn
 DateTimePicker : dtp
 TabControl : tabc
 
-- Actualizar repositorio del servidor con el local
+- Consignas:
+> por lo menos 2 paginas (.aspx)
+> menu
+> login se tiene que validar del lado del server y del cliente
+> pagina principal no tiene que tener ningun formato raro, las demas masterpage
+> operaciones webservices
+> password, reglas de validacion (min 3) - debe permitir la posibilidad de agregar una cuarta
+> pagina que permita crear nuevo usuario
+
+- Git:
+> Actualizar repositorio del servidor con el local
 
 git pull origin master
 
-- Subir un archivo al repositorio remoto
+> Subir un archivo al repositorio remoto
 
 git add Music-Manager/Autor.cs
 git add Querys.sql
@@ -44,7 +54,7 @@ git commit -a -m 'Modificacion'
 
 git push origin master
 
-- Subir todas las modificaciones al repositorio remoto
+> Subir todas las modificaciones al repositorio remoto
 
 git add .
 
@@ -52,6 +62,10 @@ git commit -a -m 'Modificaciones'
 
 git push origin master
 
-- Ver estado de modificaciones a nivel local
+> Ver estado de modificaciones a nivel local
 
 git status
+
+> Ver los commits realizados
+
+git log
