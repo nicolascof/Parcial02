@@ -3,6 +3,8 @@ Parcial 02 Programacion III
 
 - Project Name: Parcial02
 
+- Lenguajes: C# - ASP.Net - Html - SQL
+
 - Programmers:
 > Back, Leonardo (104218)
 > Mastroviti, Nicolas (104186)
@@ -52,5 +54,3 @@ git push origin master
 - Ver estado de modificaciones a nivel local
 
 git status
-
-- Indicaciones sobre consultas de Laboratorio
