@@ -1,0 +1,8 @@
+# http://www.kernel.org/pub/software/scm/git/docs/gitignore.html
+# .gitignore para proyectos .NET (VisualStudio)
+
+obj
+bin
+*.csproj.user
+*.suo
+*.db
