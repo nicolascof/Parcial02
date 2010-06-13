@@ -1,0 +1,56 @@
+Tecnicatura Superior en Programacion - UTN - FRC
+Parcial 02 Programacion III
+
+- Project Name: Parcial02
+
+- Programmers:
+> Back, Leonardo (104218)
+> Mastroviti, Nicolas (104186)
+
+- Convenciones: despues del prefijo va _ (guion bajo) ej. frm_
+Form : frm
+Label : lbl
+LinkLabel : llbl
+TextBox : tbx
+ComboBox : cbx
+ListBox : lbx
+Button : btn
+RadioButton : rbtn
+RichTextBox : rtbx
+GroupBox : gbx
+DataGridView : dgv
+GridView: gv
+ToolStripLabel : tsl
+ToolStripDropDownBox : tsddb
+ToolStripMenuItem : tsmi
+TreeView : tv
+RootNode : rn
+DateTimePicker : dtp
+TabControl : tabc
+
+- Actualizar repositorio del servidor con el local
+
+git pull origin master
+
+- Subir un archivo al repositorio remoto
+
+git add Music-Manager/Autor.cs
+git add Querys.sql
+
+git commit -a -m 'Modificacion'
+
+git push origin master
+
+- Subir todas las modificaciones al repositorio remoto
+
+git add .
+
+git commit -a -m 'Modificaciones'
+
+git push origin master
+
+- Ver estado de modificaciones a nivel local
+
+git status
+
+- Indicaciones sobre consultas de Laboratorio
