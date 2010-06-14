@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://aspspider.info/nicolascof/webservices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://aspspider.info/nicolascof/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://aspspider.info/nicolascof/parcial02/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://aspspider.info/nicolascof/parcial02/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://aspspider.info/nicolascof/webservices/">
+    <s:schema elementFormDefault="qualified" targetNamespace="http://aspspider.info/nicolascof/parcial02/">
       <s:element name="VerificarUsuario">
         <s:complexType>
           <s:sequence>
@@ -34,7 +34,7 @@
   <wsdl:binding name="UserSoap" type="tns:UserSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="VerificarUsuario">
-      <soap:operation soapAction="http://aspspider.info/nicolascof/webservices/VerificarUsuario" style="document" />
+      <soap:operation soapAction="http://aspspider.info/nicolascof/parcial02/VerificarUsuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -46,7 +46,7 @@
   <wsdl:binding name="UserSoap12" type="tns:UserSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="VerificarUsuario">
-      <soap12:operation soapAction="http://aspspider.info/nicolascof/webservices/VerificarUsuario" style="document" />
+      <soap12:operation soapAction="http://aspspider.info/nicolascof/parcial02/VerificarUsuario" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -57,10 +57,10 @@
   </wsdl:binding>
   <wsdl:service name="User">
     <wsdl:port name="UserSoap" binding="tns:UserSoap">
-      <soap:address location="http://localhost:1051/Parcial02/User.asmx" />
+      <soap:address location="http://localhost:1051/Parcial02/WebServices/User.asmx" />
     </wsdl:port>
     <wsdl:port name="UserSoap12" binding="tns:UserSoap12">
-      <soap12:address location="http://localhost:1051/Parcial02/User.asmx" />
+      <soap12:address location="http://localhost:1051/Parcial02/WebServices/User.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

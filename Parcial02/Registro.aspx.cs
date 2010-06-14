@@ -17,7 +17,7 @@ public partial class Registro : System.Web.UI.Page
 
     protected void btn_Registrar_Click( object sender, EventArgs e )
     {
-
+        // Pendiente: implementarlo con webservices, naaaaaaaaaa, que vago XD
         if ( Page.IsValid )
         {
             AccessDB CxnDB = new AccessDB();
