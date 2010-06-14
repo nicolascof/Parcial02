@@ -1,10 +1,12 @@
+$> CODIGO EN FASE DE DESARROLLO Y TESTING!!! BAZINGA XD
+
 Tecnicatura Superior en Programacion - UTN - FRC
-Parcial 02 Programacion III
+Parcial II - Programacion III
 
 - Project Name: Parcial02
 > https://git.wiki.kernel.org/index.php/Main_Page
 
-- Lenguajes: C# - ASP.Net - Html - SQL
+- Lenguajes: C# - ASP.Net (.aspx/.asmx) - Html - SQL (Access)
 
 - Programmers:
 > Back, Leonardo (104218)
@@ -14,6 +16,7 @@ Parcial 02 Programacion III
 Form : frm
 Label : lbl
 LinkLabel : llbl
+LinkButton : lbtn
 TextBox : tbx
 ComboBox : cbx
 ListBox : lbx
@@ -30,6 +33,13 @@ TreeView : tv
 RootNode : rn
 DateTimePicker : dtp
 TabControl : tabc
+RequiredFieldValidator : rfv
+RangeValidator : rv
+CustomValidator : cv
+RegularExpressionValidator : rev
+CompareValidator : cmpv
+ContentPlaceHolder : cph
+Content : c
 
 - Consignas:
 > por lo menos 2 paginas (.aspx)
@@ -39,6 +49,12 @@ TabControl : tabc
 > operaciones webservices
 > password, reglas de validacion (min 3) - debe permitir la posibilidad de agregar una cuarta
 > pagina que permita crear nuevo usuario
+
+- Documentacion consultada:
+> http://www.w3schools.com/aspnet/
+> http://msdn.microsoft.com/es-es/library/yexfcbxy%28VS.80%29.aspx (RequiredFieldValidator)
+> http://msdn.microsoft.com/es-es/library/sd2hd57f%28v=VS.80%29.aspx (RangeValidator)
+> http://www.w3schools.com/aspnet/aspnet_refvalidationcontrols.asp
 
 - Git:
 > Actualizar repositorio del servidor con el local
