@@ -3,6 +3,9 @@ $> CODIGO EN FASE DE DESARROLLO Y TESTING!!! BAZINGA XD
 Tecnicatura Superior en Programacion - UTN - FRC
 Parcial II - Programacion III
 
+- Foro ( Dudas )
+> http://foro.nicolascof.com.ar
+
 - Project Name: Parcial02
 > https://git.wiki.kernel.org/index.php/Main_Page
 
@@ -63,8 +66,10 @@ git pull origin master
 
 > Subir un archivo al repositorio remoto
 
-git add Music-Manager/Autor.cs
-git add Querys.sql
+git add Folder/source.* ( *:se debe remplazar por la extension que quieran )
+git add source.cs
+git add source.aspx
+git add source.*
 
 git commit -a -m 'Modificacion'
 
