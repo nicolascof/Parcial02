@@ -77,7 +77,7 @@ git push origin master
 
 > Subir todas las modificaciones al repositorio remoto
 
-git add .
+git add . -v ( -v: modo verbose )
 
 git commit -a -m 'Modificaciones'
 
