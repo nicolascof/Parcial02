@@ -14,6 +14,11 @@ public class Product : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public void MostrarProductos()
+    {
+    }
+
+    [WebMethod]
     public void BuscarProductos()
     { }
 

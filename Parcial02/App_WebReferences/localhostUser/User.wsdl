@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://aspspider.info/nicolascof/parcial02/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://aspspider.info/nicolascof/parcial02/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://aspspider.info/nicolascof/parcial02/">
+      <s:element name="IngresoUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IngresoUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IngresoUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistrarUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistrarUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrarUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IngresoUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:IngresoUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IngresoUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:IngresoUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegistrarUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:RegistrarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="RegistrarUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:RegistrarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:portType name="UserSoap">
+    <wsdl:operation name="IngresoUsuario">
+      <wsdl:input message="tns:IngresoUsuarioSoapIn" />
+      <wsdl:output message="tns:IngresoUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarUsuario">
+      <wsdl:input message="tns:RegistrarUsuarioSoapIn" />
+      <wsdl:output message="tns:RegistrarUsuarioSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserSoap" type="tns:UserSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IngresoUsuario">
+      <soap:operation soapAction="http://aspspider.info/nicolascof/parcial02/IngresoUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarUsuario">
+      <soap:operation soapAction="http://aspspider.info/nicolascof/parcial02/RegistrarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="UserSoap12" type="tns:UserSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IngresoUsuario">
+      <soap12:operation soapAction="http://aspspider.info/nicolascof/parcial02/IngresoUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarUsuario">
+      <soap12:operation soapAction="http://aspspider.info/nicolascof/parcial02/RegistrarUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="User">
+    <wsdl:port name="UserSoap" binding="tns:UserSoap">
+      <soap:address location="http://localhost:1147/WSUser/User.asmx" />
+    </wsdl:port>
+    <wsdl:port name="UserSoap12" binding="tns:UserSoap12">
+      <soap12:address location="http://localhost:1147/WSUser/User.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

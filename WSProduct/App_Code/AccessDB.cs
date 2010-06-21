@@ -100,4 +100,49 @@ public class AccessDB
         }
         return true;
     }
+
+    /**
+     * Products
+     * Tabla Products: product_id, category_id, product_name, product_total, product_price
+     * Tabla Category: category_id, category_name, category_active
+     */
+    public void CrearProducto()
+    { }
+
+    public void BuscarProductos()
+    { }
+
+    public void GuardarProductos()
+    { }
+
+    public void BorrarProducto()
+    { }
+
+    public bool MostrarProductos()
+    {
+        StringSQL = "SELECT C.category_name AS Categoria, P.product_name AS Producto, "
+                + "P.product_total AS Cantidad, P.product_price AS Precio "
+                + "FROM Categories AS C INNER JOIN Products AS P ON C.category_id = P.category_id;";
+        try
+        {
+            Command = new OleDbCommand();
+            Command.CommandType = CommandType.Text;
+            Command.CommandText = StringSQL;
+            Command.Connection = Conexion;
+
+            DataAdapter = new OleDbDataAdapter( Command );
+            DataSet = new DataSet();
+            DataAdapter.Fill( DataSet, "..." );
+        }
+        catch ( OleDbException e )
+        {
+            StringError = e.Message;
+            return false;
+        }
+        finally
+        {
+            this.Cerrar();
+        }
+        return true;
+    }
 }

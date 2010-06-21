@@ -1,16 +1,15 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Validado/Productos.master.cs" Inherits="Productos" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Main.master.cs" Inherits="Authorized_Main" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Productos</title>
+    <title>Página sin título</title>
 </head>
 <body>
-    <form id="frm_Productos" runat="server">
-    <h1>BAZINGA!!!</h1>
+    <form id="form1" runat="server">
     <div>
-        <asp:contentplaceholder id="cph_Productos" runat="server">
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
         </asp:contentplaceholder>
     </div>
     </form>

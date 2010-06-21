@@ -1,19 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-using System.Web.Services.Description;
 using localhostUser;
 
-public partial class _Default : System.Web.UI.Page
+public partial class Register : System.Web.UI.Page
 {
     protected void Page_Load( object sender, EventArgs e )
     { }
 
-    protected void btn_Ingresar_Click( object sender, EventArgs e )
+    protected void btn_Registrar_Click( object sender, EventArgs e )
     {
         string stringM;
         User userWS;
@@ -22,18 +22,11 @@ public partial class _Default : System.Web.UI.Page
         {
             userWS = new User();
 
-            stringM = userWS.IngresoUsuario( tbx_Usuario.Text, tbx_Password.Text );
+            stringM = userWS.RegistrarUsuario( tbx_Usuario.Text, tbx_Password.Text, tbx_Email.Text );
 
             if ( stringM.Equals( "true" ) )
             {
-                this.Server.Transfer( "~/Validado/VerProductos.aspx" ); // necesario para usar Page.PreviousPage
-            }
-            else if ( stringM.Equals( "false" ) )
-            {
-                lbl_Error.Text = "Usuario no registrado";
-                tbx_Usuario.Text = "";
-                tbx_Password.Text = "";
-                tbx_Usuario.Focus();
+                this.Response.Redirect( "Default.aspx" );
             }
             else
             {
@@ -43,9 +36,9 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
-    protected void lbtn_Registrarse_Click( object sender, EventArgs e )
+    protected void lbtn_Login_Click( object sender, EventArgs e )
     {
-        this.Response.Redirect( "Register.aspx" );
+        this.Response.Redirect( "Default.aspx" );
     }
 
     protected void cv_Usuario_ServerValidate( object source, ServerValidateEventArgs args )

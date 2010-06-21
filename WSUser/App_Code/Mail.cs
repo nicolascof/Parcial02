@@ -99,7 +99,7 @@ public class Mail
         Puerto = 587;
         SslHabilitado = true;
         Usuario = "nicolascba88@gmail.com";
-        Password = "";
+        Password = "***********";
     }
 
     public bool Enviar()

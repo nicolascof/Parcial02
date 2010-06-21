@@ -42,7 +42,7 @@ CustomValidator : cv
 RegularExpressionValidator : rev
 CompareValidator : cmpv
 ContentPlaceHolder : cph
-Content : c
+Content : ctn
 
 - Consignas:
 > por lo menos 2 paginas (.aspx)
@@ -51,6 +51,7 @@ Content : c
 > pagina principal no tiene que tener ningun formato raro, las demas masterpage
 > operaciones webservices
 > password, reglas de validacion (min 3) - debe permitir la posibilidad de agregar una cuarta
+> validacion por lado del servidor con patron cadena de responsabilidades en el password
 > pagina que permita crear nuevo usuario
 
 - Documentacion consultada:
