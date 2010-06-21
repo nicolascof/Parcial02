@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://aspspider.info/nicolascof/parcial02/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://aspspider.info/nicolascof/parcial02/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://null/parcial02/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://null/parcial02/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://aspspider.info/nicolascof/parcial02/">
+    <s:schema elementFormDefault="qualified" targetNamespace="http://null/parcial02/">
       <s:element name="MostrarProductos">
         <s:complexType />
       </s:element>
       <s:element name="MostrarProductosResponse">
         <s:complexType />
       </s:element>
-      <s:element name="BuscarProductos">
+      <s:element name="BuscarProducto">
         <s:complexType />
       </s:element>
-      <s:element name="BuscarProductosResponse">
+      <s:element name="BuscarProductoResponse">
         <s:complexType />
       </s:element>
       <s:element name="CrearProducto">
@@ -20,10 +20,16 @@
       <s:element name="CrearProductoResponse">
         <s:complexType />
       </s:element>
-      <s:element name="GuardarProductos">
+      <s:element name="GuardarProducto">
         <s:complexType />
       </s:element>
-      <s:element name="GuardarProductosResponse">
+      <s:element name="GuardarProductoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ActualizarProducto">
+        <s:complexType />
+      </s:element>
+      <s:element name="ActualizarProductoResponse">
         <s:complexType />
       </s:element>
       <s:element name="BorrarProducto">
@@ -40,11 +46,11 @@
   <wsdl:message name="MostrarProductosSoapOut">
     <wsdl:part name="parameters" element="tns:MostrarProductosResponse" />
   </wsdl:message>
-  <wsdl:message name="BuscarProductosSoapIn">
-    <wsdl:part name="parameters" element="tns:BuscarProductos" />
+  <wsdl:message name="BuscarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarProducto" />
   </wsdl:message>
-  <wsdl:message name="BuscarProductosSoapOut">
-    <wsdl:part name="parameters" element="tns:BuscarProductosResponse" />
+  <wsdl:message name="BuscarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarProductoResponse" />
   </wsdl:message>
   <wsdl:message name="CrearProductoSoapIn">
     <wsdl:part name="parameters" element="tns:CrearProducto" />
@@ -52,11 +58,17 @@
   <wsdl:message name="CrearProductoSoapOut">
     <wsdl:part name="parameters" element="tns:CrearProductoResponse" />
   </wsdl:message>
-  <wsdl:message name="GuardarProductosSoapIn">
-    <wsdl:part name="parameters" element="tns:GuardarProductos" />
+  <wsdl:message name="GuardarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:GuardarProducto" />
   </wsdl:message>
-  <wsdl:message name="GuardarProductosSoapOut">
-    <wsdl:part name="parameters" element="tns:GuardarProductosResponse" />
+  <wsdl:message name="GuardarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:GuardarProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizarProducto" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizarProductoResponse" />
   </wsdl:message>
   <wsdl:message name="BorrarProductoSoapIn">
     <wsdl:part name="parameters" element="tns:BorrarProducto" />
@@ -69,17 +81,21 @@
       <wsdl:input message="tns:MostrarProductosSoapIn" />
       <wsdl:output message="tns:MostrarProductosSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="BuscarProductos">
-      <wsdl:input message="tns:BuscarProductosSoapIn" />
-      <wsdl:output message="tns:BuscarProductosSoapOut" />
+    <wsdl:operation name="BuscarProducto">
+      <wsdl:input message="tns:BuscarProductoSoapIn" />
+      <wsdl:output message="tns:BuscarProductoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="CrearProducto">
       <wsdl:input message="tns:CrearProductoSoapIn" />
       <wsdl:output message="tns:CrearProductoSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GuardarProductos">
-      <wsdl:input message="tns:GuardarProductosSoapIn" />
-      <wsdl:output message="tns:GuardarProductosSoapOut" />
+    <wsdl:operation name="GuardarProducto">
+      <wsdl:input message="tns:GuardarProductoSoapIn" />
+      <wsdl:output message="tns:GuardarProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarProducto">
+      <wsdl:input message="tns:ActualizarProductoSoapIn" />
+      <wsdl:output message="tns:ActualizarProductoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="BorrarProducto">
       <wsdl:input message="tns:BorrarProductoSoapIn" />
@@ -89,7 +105,7 @@
   <wsdl:binding name="ProductSoap" type="tns:ProductSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="MostrarProductos">
-      <soap:operation soapAction="http://aspspider.info/nicolascof/parcial02/MostrarProductos" style="document" />
+      <soap:operation soapAction="http://null/parcial02/MostrarProductos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -97,8 +113,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="BuscarProductos">
-      <soap:operation soapAction="http://aspspider.info/nicolascof/parcial02/BuscarProductos" style="document" />
+    <wsdl:operation name="BuscarProducto">
+      <soap:operation soapAction="http://null/parcial02/BuscarProducto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -107,7 +123,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CrearProducto">
-      <soap:operation soapAction="http://aspspider.info/nicolascof/parcial02/CrearProducto" style="document" />
+      <soap:operation soapAction="http://null/parcial02/CrearProducto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -115,8 +131,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GuardarProductos">
-      <soap:operation soapAction="http://aspspider.info/nicolascof/parcial02/GuardarProductos" style="document" />
+    <wsdl:operation name="GuardarProducto">
+      <soap:operation soapAction="http://null/parcial02/GuardarProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarProducto">
+      <soap:operation soapAction="http://null/parcial02/ActualizarProducto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -125,7 +150,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="BorrarProducto">
-      <soap:operation soapAction="http://aspspider.info/nicolascof/parcial02/BorrarProducto" style="document" />
+      <soap:operation soapAction="http://null/parcial02/BorrarProducto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -137,7 +162,7 @@
   <wsdl:binding name="ProductSoap12" type="tns:ProductSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="MostrarProductos">
-      <soap12:operation soapAction="http://aspspider.info/nicolascof/parcial02/MostrarProductos" style="document" />
+      <soap12:operation soapAction="http://null/parcial02/MostrarProductos" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -145,8 +170,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="BuscarProductos">
-      <soap12:operation soapAction="http://aspspider.info/nicolascof/parcial02/BuscarProductos" style="document" />
+    <wsdl:operation name="BuscarProducto">
+      <soap12:operation soapAction="http://null/parcial02/BuscarProducto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -155,7 +180,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CrearProducto">
-      <soap12:operation soapAction="http://aspspider.info/nicolascof/parcial02/CrearProducto" style="document" />
+      <soap12:operation soapAction="http://null/parcial02/CrearProducto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -163,8 +188,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GuardarProductos">
-      <soap12:operation soapAction="http://aspspider.info/nicolascof/parcial02/GuardarProductos" style="document" />
+    <wsdl:operation name="GuardarProducto">
+      <soap12:operation soapAction="http://null/parcial02/GuardarProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarProducto">
+      <soap12:operation soapAction="http://null/parcial02/ActualizarProducto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -173,7 +207,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="BorrarProducto">
-      <soap12:operation soapAction="http://aspspider.info/nicolascof/parcial02/BorrarProducto" style="document" />
+      <soap12:operation soapAction="http://null/parcial02/BorrarProducto" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

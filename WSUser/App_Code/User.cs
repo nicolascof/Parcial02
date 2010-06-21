@@ -4,35 +4,37 @@ using System.Collections;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 
-[WebService( Namespace = "http://aspspider.info/nicolascof/parcial02/" )]
+[WebService( Namespace = "http://null/parcial02/" )]
 [WebServiceBinding( ConformsTo = WsiProfiles.BasicProfile1_1 )]
 public class User : System.Web.Services.WebService
 {
     public User()
-    {
-        // Constructor
-    }
+    { }
 
     [WebMethod]
-    public string IngresoUsuario( string usuario, string password )
+    public string IngresoUsuario( Usuario usuario )
     {
         string stringM = null;
         AccessDB cxnDB = new AccessDB();
 
-        if ( String.IsNullOrEmpty( usuario ) || String.IsNullOrEmpty( password ) )
+        if ( String.IsNullOrEmpty( usuario.UserName ) 
+            || String.IsNullOrEmpty( usuario.UserPassword ) )
         {
             stringM = "Falta ingresar datos";
         }
-        else if ( ( usuario.Length < 5 || usuario.Length > 25 )
-            && ( password.Length < 5 || password.Length > 30 ) )
+        else if ( usuario.UserName.Length < 5 || usuario.UserName.Length > 25 )
         {
-            stringM = "Longitud de caracteres incorrecto";
+            stringM = "Usuario: Longitud de caracteres incorrecto";
+        }
+        else if ( usuario.UserPassword.Length < 5 || usuario.UserPassword.Length > 30 )
+        {
+            stringM = "Password: Longitud de caracteres incorrecto";
         }
         else
         {
             if ( cxnDB.Conectar() )
             {
-                if ( cxnDB.Login( usuario, password ) )
+                if ( cxnDB.Login( usuario.UserName, usuario.UserPassword ) )
                 {
                     if ( cxnDB.DataReader.Read() )
                     {
@@ -58,40 +60,44 @@ public class User : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string RegistrarUsuario( string usuario, string password, string email )
+    public string RegistrarUsuario( Usuario usuario )
     {
         string stringM = null;
         AccessDB cxnDB = new AccessDB();
 
-        if ( String.IsNullOrEmpty( usuario ) || String.IsNullOrEmpty( password )
-            || String.IsNullOrEmpty( email ) )
+        if ( String.IsNullOrEmpty( usuario.UserName ) 
+            || String.IsNullOrEmpty( usuario.UserPassword )
+            || String.IsNullOrEmpty( usuario.UserEmail ) )
         {
             stringM = "Falta ingresar datos";
         }
-        else if ( ( usuario.Length < 5 || usuario.Length > 25 )
-            && ( password.Length < 5 || password.Length > 30 ) )
+        else if ( usuario.UserName.Length < 5 || usuario.UserName.Length > 25 )
         {
-            stringM = "Longitud de caracteres incorrecto";
+            stringM = "Usuario: Longitud de caracteres incorrecto";
+        }
+        else if ( usuario.UserPassword.Length < 5 || usuario.UserPassword.Length > 30 )
+        {
+            stringM = "Password: Longitud de caracteres incorrecto";
         }
         else
         {
             if ( cxnDB.Conectar() )
             {
-                if ( cxnDB.ExisteUsuario( usuario ) )
+                if ( cxnDB.ExisteUsuario( usuario.UserName ) )
                 {
                     if ( !cxnDB.DataReader.Read() )
                     {
                         Mail oM = new Mail();
-                        oM.EmailDestino = email;
+                        oM.EmailDestino = usuario.UserEmail;
                         oM.Asunto = "Registro";
                         oM.CuerpoMensaje = String.Format( "Bienvenido {0}, ¡Gracias por registrarse!<br /><br />"
                             + "<i>Usuario:</i> <b>{0}</b><br /><i>Password:</i> <b>{1}</b><br /><br />"
-                            + "Visite <a href='http://aspspider.info/nicolascof/Login.aspx' target='_blank'>ASP.Net-Test</a>",
-                            usuario, password );
+                            + "Visite <a href='http://null' target='_blank'>Parcial02</a>",
+                            usuario.UserName, usuario.UserPassword );
 
                         if ( oM.Enviar() )
                         {
-                            if ( cxnDB.Registro( usuario, password, email ) )
+                            if ( cxnDB.Registro( usuario.UserEmail, usuario.UserPassword, usuario.UserEmail ) )
                             {
                                 cxnDB.Cerrar();
                                 stringM = "true";

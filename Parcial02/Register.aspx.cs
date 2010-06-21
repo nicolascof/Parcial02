@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-using localhostUser;
 
 public partial class Register : System.Web.UI.Page
 {
@@ -16,13 +15,19 @@ public partial class Register : System.Web.UI.Page
     protected void btn_Registrar_Click( object sender, EventArgs e )
     {
         string stringM;
-        User userWS;
+        localhostUser.User userWS;
+        localhostUser.Usuario usuario;
 
         if ( Page.IsValid )
         {
-            userWS = new User();
+            userWS = new localhostUser.User();
+            
+            usuario = new localhostUser.Usuario();
+            usuario.UserName = tbx_Usuario.Text; 
+            usuario.UserPassword = tbx_Password.Text;
+            usuario.UserEmail = tbx_Email.Text;
 
-            stringM = userWS.RegistrarUsuario( tbx_Usuario.Text, tbx_Password.Text, tbx_Email.Text );
+            stringM = userWS.RegistrarUsuario( usuario );
 
             if ( stringM.Equals( "true" ) )
             {

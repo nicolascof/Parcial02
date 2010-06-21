@@ -3,23 +3,21 @@ using System.Web;
 using System.Collections;
 using System.Web.Services;
 using System.Web.Services.Protocols;
+using System.Collections.Generic;
 
-[WebService( Namespace = "http://aspspider.info/nicolascof/parcial02/" )]
+[WebService( Namespace = "http://null/parcial02/" )]
 [WebServiceBinding( ConformsTo = WsiProfiles.BasicProfile1_1 )]
 public class Product : System.Web.Services.WebService
 {
     public Product()
-    {
-        // Constructor
-    }
+    { }
 
     [WebMethod]
     public void MostrarProductos()
-    {
-    }
+    { }
 
     [WebMethod]
-    public void BuscarProductos()
+    public void BuscarProducto()
     { }
 
     [WebMethod]
@@ -27,7 +25,11 @@ public class Product : System.Web.Services.WebService
     { }
 
     [WebMethod]
-    public void GuardarProductos()
+    public void GuardarProducto()
+    { }
+
+    [WebMethod]
+    public void ActualizarProducto()
     { }
 
     [WebMethod]
