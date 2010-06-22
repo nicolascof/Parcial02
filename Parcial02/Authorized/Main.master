@@ -4,14 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Página sin título</title>
+    <title>Main</title>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
-        </asp:contentplaceholder>
-    </div>
+    <form id="frm_Main" runat="server">
+        <h2>Bazinga! XD</h2>
+        <asp:contentplaceholder id="cph_Main" runat="server"></asp:contentplaceholder>
     </form>
 </body>
 </html>

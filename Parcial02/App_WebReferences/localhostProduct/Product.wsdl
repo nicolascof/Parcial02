@@ -6,8 +6,24 @@
         <s:complexType />
       </s:element>
       <s:element name="MostrarProductosResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarProductosResult" type="tns:ArrayOfProducto" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
+      <s:complexType name="ArrayOfProducto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Producto" nillable="true" type="tns:Producto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Producto">
+        <s:attribute name="ProductId" type="s:int" use="required" />
+        <s:attribute name="CategoryId" type="s:int" use="required" />
+        <s:attribute name="ProductName" type="s:string" />
+        <s:attribute name="ProductTotal" type="s:int" use="required" />
+        <s:attribute name="ProductPrice" type="s:int" use="required" />
+      </s:complexType>
       <s:element name="BuscarProducto">
         <s:complexType />
       </s:element>
