@@ -25,10 +25,18 @@
         <s:attribute name="ProductPrice" type="s:int" use="required" />
       </s:complexType>
       <s:element name="BuscarProducto">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="productName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="BuscarProductoResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarProductoResult" type="tns:ArrayOfProducto" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="CrearProducto">
         <s:complexType />

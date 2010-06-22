@@ -9,6 +9,11 @@
 <body>
     <form id="frm_Main" runat="server">
         <h2>Bazinga! XD</h2>
+        <asp:LinkButton ID="lbtn_ShowProducts" runat="server" OnClick="lbtn_ShowProducts_Click">Ver Productos</asp:LinkButton>
+        -
+        <asp:LinkButton ID="lbtn_AddProduct" runat="server" OnClick="lbtn_AddProduct_Click">Agregar Producto</asp:LinkButton>
+        <br />
+        <br />
         <asp:contentplaceholder id="cph_Main" runat="server"></asp:contentplaceholder>
     </form>
 </body>

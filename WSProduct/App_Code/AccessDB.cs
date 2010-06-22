@@ -108,8 +108,34 @@ public class AccessDB
     public void CrearProducto()
     { }
 
-    public void BuscarProductos()
-    { }
+    public bool BuscarProducto( string productName )
+    {
+        StringSQL = "SELECT product_id, category_id, product_name, product_total, product_price " 
+            + "FROM Products "
+            + "WHERE product_name LIKE '%" + productName + "%';";
+        try
+        {
+            Command = new OleDbCommand();
+            Command.CommandType = CommandType.Text;
+            //Command.Parameters.Add( productName, OleDbType.WChar ).Value = productName;
+            Command.CommandText = StringSQL;
+            Command.Connection = Conexion;
+
+            DataAdapter = new OleDbDataAdapter( Command );
+            DataSet = new DataSet();
+            DataAdapter.Fill( DataSet, "Products" );
+        }
+        catch ( OleDbException e )
+        {
+            StringError = e.Message;
+            return false;
+        }
+        finally
+        {
+            this.Cerrar();
+        }
+        return true;
+    }
 
     public void GuardarProductos()
     { }
@@ -123,7 +149,7 @@ public class AccessDB
                 + "P.product_total AS Cantidad, P.product_price AS Precio "
                 + "FROM Categories AS C INNER JOIN Products AS P ON C.category_id = P.category_id;";
         */
-        StringSQL = "SELECT product_id, category_id, product_name, product_total, product_price FROM Products";
+        StringSQL = "SELECT product_id, category_id, product_name, product_total, product_price FROM Products;";
         try
         {
             Command = new OleDbCommand();

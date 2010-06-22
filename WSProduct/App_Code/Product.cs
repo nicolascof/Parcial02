@@ -41,8 +41,27 @@ public class Product : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void BuscarProducto()
-    { }
+    public List<Producto> BuscarProducto( string productName )
+    {
+        List<Producto> listProducto = new List<Producto>();
+
+        cxnDB.Conectar();
+        cxnDB.BuscarProducto( productName );
+
+        int tamR = cxnDB.DataSet.Tables["Products"].Rows.Count;
+        for ( int i = 0; i < tamR; ++i )
+        {
+            Producto producto = new Producto();
+            producto.ProductId = Convert.ToInt32( cxnDB.DataSet.Tables["Products"].Rows[i]["product_id"] );
+            producto.CategoryId = Convert.ToInt32( cxnDB.DataSet.Tables["Products"].Rows[i]["category_id"] );
+            producto.ProductName = Convert.ToString( cxnDB.DataSet.Tables["Products"].Rows[i]["product_name"] );
+            producto.ProductTotal = Convert.ToInt32( cxnDB.DataSet.Tables["Products"].Rows[i]["product_total"] );
+            producto.ProductPrice = Convert.ToInt32( cxnDB.DataSet.Tables["Products"].Rows[i]["product_price"] );
+            listProducto.Add( producto );
+        }
+
+        return listProducto;
+    }
 
     [WebMethod]
     public void CrearProducto()

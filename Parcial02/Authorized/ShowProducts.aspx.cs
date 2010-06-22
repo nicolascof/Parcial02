@@ -20,4 +20,15 @@ public partial class Authorized_ShowProducts : System.Web.UI.Page
         gv_Productos.DataSource = productoList;
         gv_Productos.DataBind();
     }
+
+    protected void btn_Buscar_Click( object sender, EventArgs e )
+    {
+        localhostProduct.Product productWS = new localhostProduct.Product();
+        localhostProduct.Producto[] productoList = productWS.BuscarProducto( tbx_Buscar.Text );
+
+        gv_Productos.DataSource = productoList;
+        gv_Productos.DataBind();
+
+        lbl_Info.Text = productoList.Length + " producto(s) encontrado(s)";
+    }
 }
