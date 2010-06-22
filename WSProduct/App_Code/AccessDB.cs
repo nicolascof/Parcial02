@@ -5,6 +5,7 @@ using System.Configuration;
 
 public class AccessDB
 {
+    #region Variables
     private OleDbConnection conexion;
     private OleDbCommand command;
     private OleDbDataAdapter dataAdapter;
@@ -12,6 +13,10 @@ public class AccessDB
     private DataSet dataSet;
     private string stringConexion, stringError, stringSQL;
 
+    static readonly AccessDB instance = new AccessDB();
+    #endregion
+
+    #region Propiedades
     private OleDbConnection Conexion
     {
         get { return conexion; }
@@ -60,6 +65,13 @@ public class AccessDB
         set { stringSQL = value; }
     }
 
+    public static AccessDB Instance
+    {
+        get { return instance; }
+    }
+    #endregion
+
+    #region Constructores
     public AccessDB()
     {
         Conexion = null;
@@ -69,7 +81,9 @@ public class AccessDB
         StringConexion = null;
         StringError = null;
     }
+    #endregion
 
+    #region MetodosDB
     public bool Conectar()
     {
         StringConexion = ConfigurationManager.ConnectionStrings["Local"].ToString();
@@ -100,13 +114,36 @@ public class AccessDB
         }
         return true;
     }
-
-    /**
-     * Tabla Products: product_id, category_id, product_name, product_total, product_price
-     * Tabla Category: category_id, category_name, category_active
-     */
-    public void CrearProducto()
-    { }
+    #endregion
+    
+    #region Metodos Producto
+    public bool CrearProducto( int categoryId, string productName, int productTotal, int productPrice )
+    {
+        StringSQL = "INSERT INTO Products([category_id], [product_name], [product_total], [product_price])"
+                   + " VALUES(@categoryId, @productName, @productTotal, @productPrice);";
+        try
+        {
+            Command = new OleDbCommand();
+            Command.CommandType = CommandType.Text;
+            Command.Parameters.Add( Convert.ToString( categoryId ), OleDbType.Integer ).Value = categoryId;
+            Command.Parameters.Add( productName, OleDbType.WChar ).Value = productName;
+            Command.Parameters.Add( Convert.ToString( productTotal ), OleDbType.Integer ).Value = productTotal;
+            Command.Parameters.Add( Convert.ToString( productPrice ), OleDbType.Integer ).Value = productPrice;
+            Command.CommandText = StringSQL;
+            Command.Connection = Conexion;
+            Command.ExecuteNonQuery();
+        }
+        catch ( OleDbException e )
+        {
+            StringError = e.Message;
+            return false;
+        }
+        finally
+        {
+            this.Cerrar();
+        }
+        return true;
+    }
 
     public bool BuscarProducto( string productName )
     {
@@ -172,4 +209,33 @@ public class AccessDB
         }
         return true;
     }
+    #endregion
+
+    #region Metodos Categoria
+    public bool MostrarCategorias()
+    {
+        StringSQL = "SELECT category_id, category_name, category_active FROM Categories;";
+        try
+        {
+            Command = new OleDbCommand();
+            Command.CommandType = CommandType.Text;
+            Command.CommandText = StringSQL;
+            Command.Connection = Conexion;
+
+            DataAdapter = new OleDbDataAdapter( Command );
+            DataSet = new DataSet();
+            DataAdapter.Fill( DataSet, "Category" );
+        }
+        catch ( OleDbException e )
+        {
+            StringError = e.Message;
+            return false;
+        }
+        finally
+        {
+            this.Cerrar();
+        }
+        return true;
+    }
+    #endregion
 }

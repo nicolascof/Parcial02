@@ -9,14 +9,15 @@ using System.Data;
 [WebService( Namespace = "http://null/parcial02/" )]
 [WebServiceBinding( ConformsTo = WsiProfiles.BasicProfile1_1 )]
 public class Product : System.Web.Services.WebService
-{//product_id, category_id, product_name, product_total, product_price
+{
     private AccessDB cxnDB;
 
     public Product()
     {
-        cxnDB = new AccessDB(); 
+        cxnDB = AccessDB.Instance;
     }
-    
+
+    #region WebMethods
     [WebMethod]
     public List<Producto> MostrarProductos()
     {
@@ -64,8 +65,11 @@ public class Product : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void CrearProducto()
-    { }
+    public void CrearProducto( Producto producto )
+    {
+        cxnDB.Conectar();
+        cxnDB.CrearProducto( producto.CategoryId, producto.ProductName, producto.ProductTotal, producto.ProductPrice );
+    }
 
     [WebMethod]
     public void GuardarProducto()
@@ -78,4 +82,14 @@ public class Product : System.Web.Services.WebService
     [WebMethod]
     public void BorrarProducto()
     { }
+
+    [WebMethod]
+    public DataSet MostrarCategorias()
+    {
+        cxnDB.Conectar();
+        cxnDB.MostrarCategorias();
+
+        return cxnDB.DataSet;
+    }
+    #endregion
 }

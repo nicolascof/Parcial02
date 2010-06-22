@@ -39,7 +39,11 @@
         </s:complexType>
       </s:element>
       <s:element name="CrearProducto">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="producto" type="tns:Producto" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="CrearProductoResponse">
         <s:complexType />
@@ -61,6 +65,23 @@
       </s:element>
       <s:element name="BorrarProductoResponse">
         <s:complexType />
+      </s:element>
+      <s:element name="MostrarCategorias">
+        <s:complexType />
+      </s:element>
+      <s:element name="MostrarCategoriasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarCategoriasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
       </s:element>
     </s:schema>
   </wsdl:types>
@@ -100,6 +121,12 @@
   <wsdl:message name="BorrarProductoSoapOut">
     <wsdl:part name="parameters" element="tns:BorrarProductoResponse" />
   </wsdl:message>
+  <wsdl:message name="MostrarCategoriasSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarCategorias" />
+  </wsdl:message>
+  <wsdl:message name="MostrarCategoriasSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarCategoriasResponse" />
+  </wsdl:message>
   <wsdl:portType name="ProductSoap">
     <wsdl:operation name="MostrarProductos">
       <wsdl:input message="tns:MostrarProductosSoapIn" />
@@ -124,6 +151,10 @@
     <wsdl:operation name="BorrarProducto">
       <wsdl:input message="tns:BorrarProductoSoapIn" />
       <wsdl:output message="tns:BorrarProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarCategorias">
+      <wsdl:input message="tns:MostrarCategoriasSoapIn" />
+      <wsdl:output message="tns:MostrarCategoriasSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ProductSoap" type="tns:ProductSoap">
@@ -182,6 +213,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="MostrarCategorias">
+      <soap:operation soapAction="http://null/parcial02/MostrarCategorias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ProductSoap12" type="tns:ProductSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -232,6 +272,15 @@
     </wsdl:operation>
     <wsdl:operation name="BorrarProducto">
       <soap12:operation soapAction="http://null/parcial02/BorrarProducto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarCategorias">
+      <soap12:operation soapAction="http://null/parcial02/MostrarCategorias" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

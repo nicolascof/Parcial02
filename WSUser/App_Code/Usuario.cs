@@ -1,15 +1,15 @@
 ﻿using System;
 
-/**
-* Tabla Users: user_id, user_name, user_password, user_email
-*/
 public class Usuario
 {
+    #region Variables
     private int userId;
     private string userName;
     private string userPassword;
     private string userEmail;
+    #endregion
 
+    #region Propiedades
     public int UserId
     {
         get { return userId; }
@@ -33,7 +33,9 @@ public class Usuario
         get { return userEmail; }
         set { userEmail = value; }
     }
+    #endregion
 
+    #region Constructores
     public Usuario()
     {
         UserId = 0;
@@ -41,4 +43,5 @@ public class Usuario
         UserPassword = null;
         UserEmail = null;
     }
+    #endregion
 }

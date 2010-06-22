@@ -21,7 +21,7 @@
             <tr>
                 <td align="right" style="width: 100px; height: 26px;"><asp:Label ID="lbl_Password" runat="server" Text="Password"></asp:Label></td>
                 <td style="width: 650px; height: 26px;"><asp:TextBox ID="tbx_Password" runat="server" MaxLength="30" Width="200px" TextMode="Password"></asp:TextBox><asp:RequiredFieldValidator ID="rfv_Password" runat="server" ErrorMessage="Campo obligatorio" ControlToValidate="tbx_Password" SetFocusOnError="True" Display="Dynamic"></asp:RequiredFieldValidator><asp:CustomValidator
-                        ID="cv_Password" runat="server" ControlToValidate="tbx_Password" Display="Dynamic"
+                        ID="cv_Password" runat="server" ControlToValidate="tbx_Usuario" Display="Dynamic"
                         ErrorMessage="El password debe tener entre 5 y 30 caracteres" OnServerValidate="cv_Password_ServerValidate"
                         SetFocusOnError="True"></asp:CustomValidator></td>
             </tr>
@@ -37,8 +37,10 @@
         <br />
         <asp:GridView ID="gv_Usuarios" runat="server" AutoGenerateColumns="False">
             <Columns>
-                <asp:BoundField DataField="user_name" HeaderText="Name" />
-                <asp:BoundField DataField="user_password" HeaderText="Password" />
+                <asp:BoundField DataField="UserId" HeaderText="ID" />
+                <asp:BoundField DataField="UserName" HeaderText="Name" />
+                <asp:BoundField DataField="UserPassword" HeaderText="Password" />
+                <asp:BoundField DataField="UserEmail" HeaderText="e-mail" />
             </Columns>
         </asp:GridView>
     </form>

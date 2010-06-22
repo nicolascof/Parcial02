@@ -15,20 +15,20 @@ public partial class Authorized_ShowProducts : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         localhostProduct.Product productWS = new localhostProduct.Product();
-        localhostProduct.Producto[] productoList = productWS.MostrarProductos();
+        localhostProduct.Producto[] listProducto = productWS.MostrarProductos();
 
-        gv_Productos.DataSource = productoList;
+        gv_Productos.DataSource = listProducto;
         gv_Productos.DataBind();
     }
 
     protected void btn_Buscar_Click( object sender, EventArgs e )
     {
         localhostProduct.Product productWS = new localhostProduct.Product();
-        localhostProduct.Producto[] productoList = productWS.BuscarProducto( tbx_Buscar.Text );
+        localhostProduct.Producto[] listProducto = productWS.BuscarProducto( tbx_Buscar.Text );
 
-        gv_Productos.DataSource = productoList;
+        gv_Productos.DataSource = listProducto;
         gv_Productos.DataBind();
 
-        lbl_Info.Text = productoList.Length + " producto(s) encontrado(s)";
+        lbl_Info.Text = listProducto.Length + " producto(s) encontrado(s)";
     }
 }

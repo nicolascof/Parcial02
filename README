@@ -54,6 +54,11 @@ Content : ctn
 > validacion por lado del servidor con patron cadena de responsabilidades en el password
 > pagina que permita crear nuevo usuario
 
+- Tablas
+Users: user_id, user_name, user_password, user_email
+Products: product_id, category_id, product_name, product_total, product_price
+Categories: category_id, category_name, category_active
+
 - Documentacion consultada:
 > http://www.w3schools.com/aspnet/
 > http://msdn.microsoft.com/es-es/library/yexfcbxy%28VS.80%29.aspx (RequiredFieldValidator)

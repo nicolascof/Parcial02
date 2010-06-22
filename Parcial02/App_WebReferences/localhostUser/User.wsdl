@@ -24,6 +24,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="IngresoUsuarioTest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IngresoUsuarioTestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IngresoUsuarioTestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="RegistrarUsuario">
         <s:complexType>
           <s:sequence>
@@ -38,6 +53,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="MostrarUsuarios">
+        <s:complexType />
+      </s:element>
+      <s:element name="MostrarUsuariosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MostrarUsuariosResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUsuario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Usuario" nillable="true" type="tns:Usuario" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="IngresoUsuarioSoapIn">
@@ -46,20 +76,40 @@
   <wsdl:message name="IngresoUsuarioSoapOut">
     <wsdl:part name="parameters" element="tns:IngresoUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IngresoUsuarioTestSoapIn">
+    <wsdl:part name="parameters" element="tns:IngresoUsuarioTest" />
+  </wsdl:message>
+  <wsdl:message name="IngresoUsuarioTestSoapOut">
+    <wsdl:part name="parameters" element="tns:IngresoUsuarioTestResponse" />
+  </wsdl:message>
   <wsdl:message name="RegistrarUsuarioSoapIn">
     <wsdl:part name="parameters" element="tns:RegistrarUsuario" />
   </wsdl:message>
   <wsdl:message name="RegistrarUsuarioSoapOut">
     <wsdl:part name="parameters" element="tns:RegistrarUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="MostrarUsuariosSoapIn">
+    <wsdl:part name="parameters" element="tns:MostrarUsuarios" />
+  </wsdl:message>
+  <wsdl:message name="MostrarUsuariosSoapOut">
+    <wsdl:part name="parameters" element="tns:MostrarUsuariosResponse" />
+  </wsdl:message>
   <wsdl:portType name="UserSoap">
     <wsdl:operation name="IngresoUsuario">
       <wsdl:input message="tns:IngresoUsuarioSoapIn" />
       <wsdl:output message="tns:IngresoUsuarioSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="IngresoUsuarioTest">
+      <wsdl:input message="tns:IngresoUsuarioTestSoapIn" />
+      <wsdl:output message="tns:IngresoUsuarioTestSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="RegistrarUsuario">
       <wsdl:input message="tns:RegistrarUsuarioSoapIn" />
       <wsdl:output message="tns:RegistrarUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarUsuarios">
+      <wsdl:input message="tns:MostrarUsuariosSoapIn" />
+      <wsdl:output message="tns:MostrarUsuariosSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="UserSoap" type="tns:UserSoap">
@@ -73,8 +123,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="IngresoUsuarioTest">
+      <soap:operation soapAction="http://null/parcial02/IngresoUsuarioTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RegistrarUsuario">
       <soap:operation soapAction="http://null/parcial02/RegistrarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarUsuarios">
+      <soap:operation soapAction="http://null/parcial02/MostrarUsuarios" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -94,8 +162,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="IngresoUsuarioTest">
+      <soap12:operation soapAction="http://null/parcial02/IngresoUsuarioTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RegistrarUsuario">
       <soap12:operation soapAction="http://null/parcial02/RegistrarUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarUsuarios">
+      <soap12:operation soapAction="http://null/parcial02/MostrarUsuarios" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -5,13 +5,18 @@ using System.Configuration;
 
 public class AccessDB
 {
+    #region Variables
     private OleDbConnection conexion;
     private OleDbCommand command;
     private OleDbDataAdapter dataAdapter;
     private OleDbDataReader dataReader;
     private DataSet dataSet;
     private string stringConexion, stringError, stringSQL;
+    
+    static readonly AccessDB instance = new AccessDB();
+    #endregion
 
+    #region Propiedades
     private OleDbConnection Conexion
     {
         get { return conexion; }
@@ -60,6 +65,13 @@ public class AccessDB
         set { stringSQL = value; }
     }
 
+    public static AccessDB Instance
+    {
+        get { return instance; }
+    }
+    #endregion
+
+    #region Constructores
     public AccessDB()
     {
         Conexion = null;
@@ -69,7 +81,9 @@ public class AccessDB
         StringConexion = null;
         StringError = null;
     }
+    #endregion
 
+    #region MetodosDB
     public bool Conectar()
     {
         StringConexion = ConfigurationManager.ConnectionStrings["Local"].ToString();
@@ -100,7 +114,9 @@ public class AccessDB
         }
         return true;
     }
+    #endregion
 
+    #region Metodos Usuario
     public bool Login( string user, string password )
     {
         StringSQL = "SELECT user_id FROM Users WHERE user_name=@user AND user_password=@password;";
@@ -171,9 +187,9 @@ public class AccessDB
         return true;
     }
 
-    public bool Usuarios()
+    public bool MostrarUsuarios()
     {
-        StringSQL = "SELECT user_name, user_password FROM Users;";
+        StringSQL = "SELECT user_id, user_name, user_password, user_email FROM Users;";
         try
         {
             Command = new OleDbCommand();
@@ -196,4 +212,5 @@ public class AccessDB
         }
         return true;
     }
+    #endregion
 }

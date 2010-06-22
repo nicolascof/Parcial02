@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-/**
-* Tabla Products: product_id, category_id, product_name, product_total, product_price
-* Tabla Category: category_id, category_name, category_active
-*/
 public class Producto
 {
+    #region Variables
     private int productId;
     private int categoryId;
     private string productName;
     private int productTotal;
     private int productPrice;
+    #endregion
 
+    #region Propiedades
     [XmlAttribute()]
     public int ProductId
     {
@@ -47,7 +46,9 @@ public class Producto
         get { return productPrice; }
         set { productPrice = value; }
     }
+    #endregion
 
+    #region Constructores
     public Producto()
     {
         ProductId = 0;
@@ -56,4 +57,5 @@ public class Producto
         ProductTotal = 0;
         ProductPrice = 0;
     }
+    #endregion
 }

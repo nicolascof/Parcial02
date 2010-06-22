@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Collections;
+using System.Collections.Generic;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 
@@ -8,16 +9,24 @@ using System.Web.Services.Protocols;
 [WebServiceBinding( ConformsTo = WsiProfiles.BasicProfile1_1 )]
 public class User : System.Web.Services.WebService
 {
-    public User()
-    { }
+    #region Variables
+    private AccessDB cxnDB;
+    #endregion
 
+    #region Constructores
+    public User()
+    {
+        cxnDB = AccessDB.Instance;
+    }
+    #endregion
+
+    #region WebMethods
     [WebMethod]
     public string IngresoUsuario( Usuario usuario )
     {
         string stringM = null;
-        AccessDB cxnDB = new AccessDB();
-
-        if ( String.IsNullOrEmpty( usuario.UserName ) 
+        
+        /*if ( String.IsNullOrEmpty( usuario.UserName ) 
             || String.IsNullOrEmpty( usuario.UserPassword ) )
         {
             stringM = "Falta ingresar datos";
@@ -29,7 +38,10 @@ public class User : System.Web.Services.WebService
         else if ( usuario.UserPassword.Length < 5 || usuario.UserPassword.Length > 30 )
         {
             stringM = "Password: Longitud de caracteres incorrecto";
-        }
+        }*/
+        A a = new A( usuario.UserPassword );
+        if ( !a.checkPassword() )
+            stringM = "Falta ingresar datos o longitud incorrecta";
         else
         {
             if ( cxnDB.Conectar() )
@@ -60,10 +72,59 @@ public class User : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public string IngresoUsuarioTest( string usuario, string password )
+    {
+        string stringM = null;
+
+        /*if ( String.IsNullOrEmpty( usuario.UserName ) 
+            || String.IsNullOrEmpty( usuario.UserPassword ) )
+        {
+            stringM = "Falta ingresar datos";
+        }
+        else if ( usuario.UserName.Length < 5 || usuario.UserName.Length > 25 )
+        {
+            stringM = "Usuario: Longitud de caracteres incorrecto";
+        }
+        else if ( usuario.UserPassword.Length < 5 || usuario.UserPassword.Length > 30 )
+        {
+            stringM = "Password: Longitud de caracteres incorrecto";
+        }*/
+        A a = new A( password );
+        if ( !a.checkPassword() )
+            stringM = "Falta ingresar datos o longitud incorrecta";
+        else
+        {
+            if ( cxnDB.Conectar() )
+            {
+                if ( cxnDB.Login( usuario, password ) )
+                {
+                    if ( cxnDB.DataReader.Read() )
+                    {
+                        stringM = "true";
+                    }
+                    else
+                    {
+                        stringM = "false";
+                    }
+                    cxnDB.Cerrar();
+                }
+                else
+                {
+                    stringM = cxnDB.StringError;
+                }
+            }
+            else
+            {
+                stringM = cxnDB.StringError;
+            }
+        }
+        return stringM;
+    }
+
+    [WebMethod]
     public string RegistrarUsuario( Usuario usuario )
     {
         string stringM = null;
-        AccessDB cxnDB = new AccessDB();
 
         if ( String.IsNullOrEmpty( usuario.UserName ) 
             || String.IsNullOrEmpty( usuario.UserPassword )
@@ -130,4 +191,106 @@ public class User : System.Web.Services.WebService
         }
         return stringM;
     }
+
+    [WebMethod]
+    public List<Usuario> MostrarUsuarios()
+    {
+        List<Usuario> listUsuario = new List<Usuario>();
+
+        cxnDB.Conectar();
+        cxnDB.MostrarUsuarios();
+
+        int tamR = cxnDB.DataSet.Tables["Users"].Rows.Count;
+        for ( int i = 0; i < tamR; ++i )
+        {
+            Usuario usuario = new Usuario();
+            usuario.UserId = Convert.ToInt32( cxnDB.DataSet.Tables["Users"].Rows[i]["user_id"] );
+            usuario.UserName = Convert.ToString( cxnDB.DataSet.Tables["Users"].Rows[i]["user_name"] );
+            usuario.UserPassword = Convert.ToString( cxnDB.DataSet.Tables["Users"].Rows[i]["user_password"] );
+            usuario.UserEmail = Convert.ToString( cxnDB.DataSet.Tables["Users"].Rows[i]["user_email"] );
+            listUsuario.Add( usuario );
+        }
+
+        return listUsuario;
+    }
+    #endregion
+
+    #region Chain of Responsibility
+    public abstract class Password
+    {
+        //string password;
+        abstract public bool checkPassword();
+    }
+
+    public class A : Password
+    {
+        string password = "";
+
+        public A( string password )
+        {
+            this.password = password;
+            checkPassword();
+        }
+
+        public override bool checkPassword()
+        {
+            if ( !String.IsNullOrEmpty( password ) )
+            {
+                B b = new B( password );//Next Chain
+                return b.checkPassword();
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    public class B : Password
+    {
+        string password = "";
+
+        public B( string password )
+        {
+            this.password = password;
+            checkPassword();
+        }
+
+        public override bool checkPassword()
+        {
+            if ( password.Length > 5 )
+            {
+                C c = new C( password );//Next Chain
+                return c.checkPassword();
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    public class C : Password
+    {
+        string password = "";
+
+        public C( string password )
+        {
+            this.password = password;
+            checkPassword();
+        }
+
+        public override bool checkPassword()
+        {
+            if ( password.Length < 30 )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+    #endregion
 }

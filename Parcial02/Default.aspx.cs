@@ -10,7 +10,13 @@ using System.Web.Services.Description;
 public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load( object sender, EventArgs e )
-    { }
+    {
+        localhostUser.User userWS = new localhostUser.User();
+        localhostUser.Usuario[] listUsuario = userWS.MostrarUsuarios();
+
+        gv_Usuarios.DataSource = listUsuario;
+        gv_Usuarios.DataBind();
+    }
 
     protected void btn_Ingresar_Click( object sender, EventArgs e )
     {
